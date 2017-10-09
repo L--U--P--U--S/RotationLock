@@ -132,13 +132,16 @@ public class RotationLockActivity extends Activity {
 			message = R.string.portrait_orientation_locked;
 		}else if(locked==2){
 			message = R.string.landscape_orientation_locked;
+		}else{
+			message = R.string.portrait_orientation_unlocked;
 		}
 		Toast.makeText(this, message,
-				Toast.LENGTH_SHORT).show();
+			Toast.LENGTH_SHORT).show();
 	}
 
 	// Show notification
 	private void showNotification(int dlocked) {
+		/* comment to remove icon in notification area
 		int messageId;
 		boolean locked=false;
 		if(dlocked==1){
@@ -172,6 +175,7 @@ public class RotationLockActivity extends Activity {
 				R.drawable.ic_stat_locked : R.drawable.ic_stat_unlocked;
 
 		mNotificationManager.notify(NOTIFICATION_ID, notification);
+		*/
 	}
 
 	// Toggle system Auto-Rotate setting.
@@ -268,6 +272,7 @@ public class RotationLockActivity extends Activity {
 		android.provider.Settings.System.putInt(getContentResolver(),
 				android.provider.Settings.System.ACCELEROMETER_ROTATION,
 				1);
+		showPopupMessage(isOrientationLocked());
 		return false;
 	}
 	// Advance from unlocked to locked(portrait) to locked(landscape) and back
